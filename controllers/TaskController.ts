@@ -1,19 +1,19 @@
 import { HandlerFunc, Context } from "https://deno.land/x/abc/mod.ts";
+import mongodb from "../config/mongodb.ts";
 import Task from "../models/Task.ts";
 
-import mongodb from "../config/mongodb.ts";
+const db: any = mongodb.getDatabase;
+const Tasks: any = db.collection("tasks");
 
-const Tasks: any = mongodb.collection("tasks");
-
-export const getTasks: HandlerFunc = (c: Context) => {
+export const getTasks: HandlerFunc = (ctx: Context) => {
   return "get tasks!";
 };
 
-export const createTask: HandlerFunc = async (c: Context) => {
+export const createTask: HandlerFunc = async (ctx: Context) => {
   try {
-    const body = await (c.body());
+    const body = await (ctx.body());
     if (!Object.keys(body).length) {
-      return c.string("Request body can not be empty!", 400);
+      return ctx.string("Request body can not be empty!", 400);
     }
     const { title, description } = body;
 
@@ -22,19 +22,19 @@ export const createTask: HandlerFunc = async (c: Context) => {
       description,
     });
 
-    return c.json(task, 201);
+    return ctx.json(task, 201);
   } catch (error) {
-    return c.json(error, 500);
+    return ctx.json(error, 500);
   }
 };
 
-export const getTask: HandlerFunc = (c: Context) => {
+export const getTask: HandlerFunc = (ctx: Context) => {
   //response.body = "get task!";
 };
 
-export const updateTask: HandlerFunc = (c: Context) => {
+export const updateTask: HandlerFunc = (ctx: Context) => {
   //response.body = "update task!";
 };
 
-export const deleteTask: HandlerFunc = (c: Context) => {
+export const deleteTask: HandlerFunc = (ctx: Context) => {
 };

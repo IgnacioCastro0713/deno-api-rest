@@ -1,9 +1,9 @@
 import { HandlerFunc, Context } from "https://deno.land/x/abc/mod.ts";
 import mongodb from "../config/mongodb.ts";
-import Task from "../models/Task.ts";
+import TaskModel from "../models/Task.ts";
 
 const db: any = mongodb.getDatabase;
-const Tasks: any = db.collection("tasks");
+const tasksCollection: any = db.collection("tasks");
 
 export const getTasks: HandlerFunc = (ctx: Context) => {
   return "get tasks!";
@@ -17,7 +17,7 @@ export const createTask: HandlerFunc = async (ctx: Context) => {
     }
     const { title, description } = body;
 
-    const task = await Tasks.insertOne({
+    const task = await tasksCollection.insertOne({
       title,
       description,
     });

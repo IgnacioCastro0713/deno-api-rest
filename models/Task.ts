@@ -1,4 +1,4 @@
-interface Task {
+interface TaskModel {
   _id: {
     $oid: string;
   };
@@ -6,4 +6,4 @@ interface Task {
   description: string;
 }
 
-export default Task;
+export default TaskModel;

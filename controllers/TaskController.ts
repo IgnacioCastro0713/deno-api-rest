@@ -1,13 +1,12 @@
 import { HandlerFunc, Context } from "https://deno.land/x/abc/mod.ts";
 import Task from "../models/Task.ts";
 
-import mongodb from"../config/mongodb.ts";
+import mongodb from "../config/mongodb.ts";
 
-const database = mongodb.getDatabase;
-const Tasks = database.collection("tasks");
+const Tasks: any = mongodb.collection("tasks");
 
 export const getTasks: HandlerFunc = (c: Context) => {
-  return  "get tasks!";
+  return "get tasks!";
 };
 
 export const createTask: HandlerFunc = async (c: Context) => {
@@ -19,7 +18,8 @@ export const createTask: HandlerFunc = async (c: Context) => {
     const { title, description } = body;
 
     const task = await Tasks.insertOne({
-      title, description
+      title,
+      description,
     });
 
     return c.json(task, 201);
@@ -37,5 +37,4 @@ export const updateTask: HandlerFunc = (c: Context) => {
 };
 
 export const deleteTask: HandlerFunc = (c: Context) => {
-
-}
+};

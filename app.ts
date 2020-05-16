@@ -1,20 +1,12 @@
-import { Application } from "https://deno.land/x/abc/mod.ts";
-import {
-  getTasks,
-  createTask,
-  getTask,
-  updateTask,
-  deleteTask
-} from "./controllers/TaskController.ts";
+import { Application } from 'https://deno.land/x/oak/mod.ts';
+import router from "./router.ts";
+
 
 const app = new Application();
 
 // routes
-app
-  .get("/task", getTasks)
-  .post("/task", createTask)
-  .get("/task/:id", getTask)
-  .put("/task/:id", updateTask)
-  .delete("/task/:id", deleteTask);
+app.use(router.routes())
+app.use(router.allowedMethods())
+
 
 export default app;

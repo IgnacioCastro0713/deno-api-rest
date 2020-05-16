@@ -4,11 +4,9 @@ import { init, MongoClient, Database } from "https://deno.land/x/mongo@v0.6.0/mo
 await init();
 
 class DB {
-  public client: MongoClient;
-
-  constructor(public dbName: string, public url: string) {
-    this.dbName = dbName;
-    this.url = url;
+  private client: MongoClient;
+  
+  constructor(private dbName: string, private url: string) {
     this.client = {} as MongoClient;
   }
 

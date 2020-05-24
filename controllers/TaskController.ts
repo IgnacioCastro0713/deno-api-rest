@@ -1,5 +1,5 @@
 import { oak } from "../dependencies.ts";
-import { Context } from "../helpers/oak/types.ts";
+import { Context } from "../helpers/types/oak.ts";
 import mongodb from "../config/mongodb.ts";
 import TaskModel from "../models/TaskModel.ts";
 

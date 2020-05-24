@@ -1,9 +1,9 @@
-import { Context } from "https://deno.land/x/oak/mod.ts";
+import { oak } from "../dependencies.ts";
+import { Context } from "../helpers/oak/types.ts";
 import mongodb from "../config/mongodb.ts";
 import TaskModel from "../models/TaskModel.ts";
 
-const db: any = mongodb.getDatabase;
-const tasksCollection: any = db.collection("tasks");
+const tasksCollection = mongodb.collection("tasks");
 
 export const getTasks = async ({ response }: Context) => {
   try {

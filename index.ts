@@ -1,12 +1,7 @@
-import app from "./app.ts";	
+import app from "./app.ts";
 import { PORT } from './config/enviroments.ts';
 
-async function start() {
-  await app.listen({ port: PORT});
-}
-
-start();
-
+await app.listen({ port: PORT});
 
 console.log(`Listening on port ${PORT} ...`);
 
